@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Starbucks Brand Audit — Kiran</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A14;
+    --green: #2D5016;
+    --green-mid: #4A7C25;
+    --green-light: #7BA05B;
+    --gold: #C9A84C;
+    --muted: #8A8A7A;
+    --border: rgba(26,26,20,0.12);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 60px;
+    mix-blend-mode: multiply;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; letter-spacing: 0.06em;
+    color: var(--dark); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--dark); text-decoration: none; opacity: 0.55;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: flex-end;
+    padding: 0;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    background: var(--green);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 80px 60px;
+    position: relative;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green-light); margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 300; line-height: 0.95;
+    color: var(--cream);
+    opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    margin-top: 32px; font-size: 14px; line-height: 1.7;
+    color: rgba(245,240,232,0.6); max-width: 340px;
+    opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
+  }
+  .hero-meta {
+    margin-top: 56px;
+    display: flex; gap: 40px;
+    opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
+  }
+  .hero-meta-item label {
+    display: block; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--green-light); margin-bottom: 6px;
+  }
+  .hero-meta-item span { font-size: 13px; color: var(--cream); opacity: 0.8; }
+
+  .hero-right {
+    background: var(--dark);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(74,124,37,0.25) 0%, transparent 70%);
+  }
+  .hero-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(180px, 22vw, 320px);
+    font-weight: 300; line-height: 1;
+    color: rgba(255,255,255,0.04);
+    position: absolute; right: -20px; bottom: 20px;
+    user-select: none;
+  }
+  .hero-badge {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,240,232,0.15);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; gap: 8px;
+    animation: spin 20s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hero-badge-inner { animation: spin 20s linear infinite reverse; }
+  .hero-badge span {
+    display: block; font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(245,240,232,0.4);
+    line-height: 1.6;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px; background: var(--border);
+    margin: 0 60px;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 120px 60px; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--muted);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 60px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--dark);
+  }
+  .section-title em { font-style: italic; color: var(--green); }
+
+  /* ── OVERVIEW ── */
+  .overview { background: var(--cream); }
+  .overview-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; margin-top: 72px; align-items: start;
+  }
+  .overview-text p {
+    font-size: 17px; line-height: 1.8; color: #3A3A2E;
+    margin-bottom: 20px;
+  }
+  .overview-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat-box {
+    background: var(--cream); padding: 36px 28px;
+    transition: background 0.3s;
+  }
+  .stat-box:hover { background: var(--green); }
+  .stat-box:hover .stat-num,
+  .stat-box:hover .stat-label { color: var(--cream); }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px; font-weight: 300;
+    color: var(--dark); line-height: 1;
+    transition: color 0.3s;
+  }
+  .stat-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-top: 8px;
+    transition: color 0.3s;
+  }
+
+  /* ── IDENTITY ── */
+  .identity { background: var(--dark); }
+  .identity .section-label { color: var(--green-light); }
+  .identity .section-title { color: var(--cream); }
+  .identity .section-title em { color: var(--gold); }
+  .identity-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; margin-top: 72px;
+    background: rgba(255,255,255,0.06);
+  }
+  .identity-card {
+    background: rgba(255,255,255,0.03);
+    padding: 44px 32px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .identity-card:hover {
+    background: rgba(74,124,37,0.15);
+    transform: translateY(-4px);
+  }
+  .identity-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 28px;
+  }
+  .identity-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--cream); margin-bottom: 12px;
+  }
+  .identity-card p {
+    font-size: 13px; line-height: 1.7;
+    color: rgba(245,240,232,0.5);
+  }
+
+  /* ── POSITIONING ── */
+  .positioning { background: var(--cream); }
+  .pos-layout {
+    display: grid; grid-template-columns: 5fr 4fr;
+    gap: 80px; margin-top: 72px; align-items: center;
+  }
+  .pos-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 300; line-height: 1.25;
+    color: var(--dark); border-left: 2px solid var(--green);
+    padding-left: 32px;
+  }
+  .pos-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .tag {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 10px 20px; border: 1px solid var(--border);
+    color: var(--dark); background: transparent;
+    transition: all 0.2s;
+  }
+  .tag:hover { background: var(--green); color: var(--cream); border-color: var(--green); }
+  .pos-pillars { display: flex; flex-direction: column; gap: 16px; }
+  .pillar {
+    padding: 24px 28px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 20px;
+    transition: border-color 0.2s;
+  }
+  .pillar:hover { border-color: var(--green); }
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; color: var(--green); opacity: 0.4;
+    min-width: 32px;
+  }
+  .pillar h4 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .pillar p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── SWOT ── */
+  .swot { background: #F0EBE0; }
+  .swot-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; margin-top: 72px;
+    background: var(--border);
+  }
+  .swot-cell {
+    padding: 52px 48px; background: #F0EBE0;
+    transition: background 0.3s;
+  }
+  .swot-cell:nth-child(1):hover { background: #E8F0E0; }
+  .swot-cell:nth-child(2):hover { background: #F0E8E0; }
+  .swot-cell:nth-child(3):hover { background: #E8EEF8; }
+  .swot-cell:nth-child(4):hover { background: #F8E8E8; }
+  .swot-header {
+    display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px;
+  }
+  .swot-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px; font-weight: 300; line-height: 1;
+  }
+  .s-color { color: var(--green); }
+  .w-color { color: #C07040; }
+  .o-color { color: #3A6080; }
+  .t-color { color: #A03A3A; }
+  .swot-title { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .swot-items { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .swot-items li {
+    font-size: 14px; line-height: 1.6; color: #3A3A2E;
+    padding-left: 16px; position: relative;
+  }
+  .swot-items li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--muted); font-size: 12px;
+  }
+
+  /* ── COMPETITORS ── */
+  .competitors { background: var(--cream); }
+  .comp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; margin-top: 72px;
+    background: var(--border);
+  }
+  .comp-card {
+    padding: 52px 40px; background: var(--cream);
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .comp-card.featured { background: var(--green); }
+  .comp-card.featured .comp-name,
+  .comp-card.featured .comp-pos,
+  .comp-card.featured .comp-detail { color: var(--cream); }
+  .comp-card.featured .comp-detail { color: rgba(245,240,232,0.65); }
+  .comp-card:not(.featured):hover { background: #EDE8DC; }
+  .comp-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 32px; display: block;
+  }
+  .featured .comp-num { color: rgba(245,240,232,0.4); }
+  .comp-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 400;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .comp-pos {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 32px;
+    display: block;
+  }
+  .comp-details { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .comp-detail {
+    font-size: 13px; color: #4A4A3A; line-height: 1.5;
+    padding-left: 14px; position: relative;
+  }
+  .comp-detail::before {
+    content: '·'; position: absolute; left: 0; color: var(--muted);
+  }
+
+  /* ── CX ── */
+  .cx { background: var(--dark); }
+  .cx .section-label { color: var(--green-light); }
+  .cx .section-title { color: var(--cream); }
+  .cx .section-title em { color: var(--gold); }
+  .cx-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 40px; margin-top: 72px;
+  }
+  .cx-item {
+    padding: 44px;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .cx-item:hover {
+    border-color: var(--green-light);
+    background: rgba(74,124,37,0.06);
+  }
+  .cx-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .cx-item p { font-size: 14px; line-height: 1.75; color: rgba(245,240,232,0.55); }
+  .cx-quote {
+    grid-column: 1 / -1;
+    padding: 52px 60px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(74,124,37,0.08);
+    text-align: center;
+  }
+  .cx-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.5vw, 34px);
+    font-style: italic; font-weight: 300;
+    color: var(--cream); line-height: 1.4;
+  }
+  .cx-quote cite {
+    display: block; margin-top: 20px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); font-style: normal;
+  }
+
+  /* ── RECOMMENDATIONS ── */
+  .recommendations { background: var(--cream); }
+  .rec-list {
+    margin-top: 72px;
+    display: flex; flex-direction: column; gap: 2px;
+    background: var(--border);
+  }
+  .rec-item {
+    display: flex; align-items: flex-start; gap: 40px;
+    padding: 40px 48px; background: var(--cream);
+    transition: background 0.3s;
+  }
+  .rec-item:hover { background: var(--green); }
+  .rec-item:hover .rec-n,
+  .rec-item:hover .rec-body h3,
+  .rec-item:hover .rec-body p { color: var(--cream); }
+  .rec-item:hover .rec-body p { color: rgba(245,240,232,0.7); }
+  .rec-n {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300;
+    color: rgba(26,26,20,0.15); line-height: 1;
+    min-width: 56px; transition: color 0.3s;
+  }
+  .rec-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--dark); margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+  .rec-body p { font-size: 14px; line-height: 1.7; color: var(--muted); transition: color 0.3s; }
+
+  /* ── CONCLUSION ── */
+  .conclusion {
+    background: var(--green);
+    padding: 140px 60px;
+    text-align: center;
+  }
+  .conclusion .section-label { color: var(--green-light); justify-content: center; }
+  .conclusion .section-label::before { background: var(--green-light); }
+  .conclusion-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 5.5vw, 80px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--cream); max-width: 800px; margin: 0 auto 48px;
+  }
+  .conclusion-title em { font-style: italic; color: var(--gold); }
+  .learnings {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 16px; max-width: 700px; margin: 0 auto 64px;
+  }
+  .learning-tag {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 12px 22px;
+    border: 1px solid rgba(245,240,232,0.3);
+    color: rgba(245,240,232,0.8);
+    transition: all 0.2s;
+  }
+  .learning-tag:hover {
+    background: rgba(245,240,232,0.1);
+    border-color: rgba(245,240,232,0.6);
+    color: var(--cream);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 60px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; color: var(--cream); font-weight: 300;
+  }
+  .footer-contact { font-size: 13px; color: var(--muted); }
+  .footer-contact a { color: var(--green-light); text-decoration: none; }
+
+  /* ── WHAT I LEARNED ── */
+  .learned { background: var(--dark); }
+  .learned .section-label { color: var(--green-light); }
+  .learned .section-title { color: var(--cream); }
+  .learned .section-title em { color: var(--gold); }
+  .learned-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px; margin-top: 72px;
+    background: rgba(255,255,255,0.06);
+  }
+  .learned-card {
+    padding: 48px 44px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+  }
+  .learned-card:hover { background: rgba(74,124,37,0.12); }
+  .learned-icon { font-size: 26px; margin-bottom: 20px; display: block; }
+  .learned-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--cream); margin-bottom: 12px;
+  }
+  .learned-card p { font-size: 14px; line-height: 1.8; color: rgba(245,240,232,0.5); }
+
+  /* ── CONCLUSION (updated) ── */
+  .conclusion {
+    background: var(--green);
+    padding: 140px 60px;
+    text-align: center;
+  }
+  .conclusion .section-label { color: var(--green-light); justify-content: center; }
+  .conclusion .section-label::before { background: var(--green-light); }
+  .conclusion-quote {
+    max-width: 820px; margin: 0 auto 48px;
+  }
+  .conclusion-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 3.5vw, 52px);
+    font-weight: 300; font-style: italic;
+    line-height: 1.2; color: var(--cream);
+    border-left: 2px solid var(--gold);
+    padding-left: 36px; text-align: left;
+  }
+  .conclusion-body {
+    max-width: 720px; margin: 0 auto 52px;
+    text-align: left;
+  }
+  .conclusion-body p {
+    font-size: 16px; line-height: 1.85;
+    color: rgba(245,240,232,0.7);
+    margin-bottom: 16px;
+  }
+  .learnings {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 16px; max-width: 700px; margin: 0 auto 0;
+  }
+  .learning-tag {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 12px 22px;
+    border: 1px solid rgba(245,240,232,0.3);
+    color: rgba(245,240,232,0.8);
+    transition: all 0.2s;
+  }
+  .learning-tag:hover {
+    background: rgba(245,240,232,0.1);
+    border-color: rgba(245,240,232,0.6);
+    color: var(--cream);
+  }
+
+  /* ── ABOUT KIRAN ── */
+  .about-kiran { background: var(--cream); padding: 120px 60px; }
+  .kiran-layout {
+    display: block;
+    margin-top: 60px;
+  }
+  .kiran-avatar {
+    width: 120px; height: 120px; border-radius: 20px;
+    background: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; color: var(--cream); font-weight: 300;
+    flex-shrink: 0;
+  }
+  .kiran-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300; color: var(--dark);
+    margin-bottom: 6px; line-height: 1;
+  }
+  .kiran-role {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 24px;
+  }
+  .kiran-bio {
+    font-size: 16px; line-height: 1.85;
+    color: #3A3A2E; max-width: 560px;
+    margin-bottom: 32px;
+  }
+  .kiran-links { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+  .kiran-btn {
+    padding: 12px 28px;
+    background: var(--green); color: var(--cream);
+    font-size: 13px; letter-spacing: 0.08em;
+    text-decoration: none; border: 1px solid var(--green);
+    transition: all 0.2s;
+  }
+  .kiran-btn:hover { background: var(--dark); border-color: var(--dark); }
+  .kiran-btn-outline {
+    padding: 12px 28px;
+    background: transparent; color: var(--dark);
+    font-size: 13px; letter-spacing: 0.08em;
+    text-decoration: none; border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .kiran-btn-outline:hover { border-color: var(--dark); }
+  .kiran-cta {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 300;
+    color: var(--dark); border-top: 1px solid var(--border);
+    padding-top: 28px;
+  }
+  .kiran-cta em { font-style: italic; color: var(--green); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    section { padding: 80px 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 260px; }
+    .hero-left { padding: 100px 24px 60px; }
+    .overview-grid,
+    .pos-layout,
+    .identity-grid { grid-template-columns: 1fr; }
+    .swot-grid,
+    .comp-grid,
+    .cx-grid,
+    .learned-grid { grid-template-columns: 1fr; }
+    .rec-item { padding: 28px 24px; gap: 20px; }
+    .kiran-layout { grid-template-columns: 1fr; gap: 32px; }
+    .conclusion { padding: 80px 24px; }
+    .conclusion-quote blockquote { font-size: clamp(22px, 5vw, 36px); padding-left: 20px; }
+    .about-kiran { padding: 80px 24px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"></a>
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#identity">Identity</a>
+    <a href="#positioning">Positioning</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#conclusion">Conclusion</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Brand Audit</p>
+    <h1 class="hero-title">Star<em>bucks</em><br>Brand<br>Audit</h1>
+    <p class="hero-sub">A comprehensive analysis of how Starbucks builds a premium, experience-driven brand that transcends coffee.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <label>By</label>
+        <span>Kiran — BBA Student</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Type</label>
+        <span>Brand Strategy</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Tools Used</label>
+        <span>Research · Figma · PowerPoint</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- OVERVIEW -->
+<section class="overview" id="overview">
+  <p class="section-label reveal">Project Overview</p>
+  <h2 class="section-title reveal">Not just coffee.<br><em>A whole world.</em></h2>
+  <div class="overview-grid">
+    <div class="overview-text reveal">
+      <p>Founded in Seattle in 1971, Starbucks has grown into one of the world's most recognizable brands — present in 80+ countries, with a positioning that goes far beyond the beverage in your hand.</p>
+      <p>This audit examines the gap between how Starbucks <em>intends</em> to be perceived and how customers actually experience the brand — across identity, positioning, marketing, and experience design.</p>
+    </div>
+    <div class="overview-stats reveal">
+      <div class="stat-box">
+        <div class="stat-num">80+</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">1971</div>
+        <div class="stat-label">Founded</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">87K+</div>
+        <div class="stat-label">Drink Combinations</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3rd</div>
+        <div class="stat-label">Place Philosophy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BRAND IDENTITY -->
+<section class="identity" id="identity">
+  <p class="section-label reveal">Brand Identity</p>
+  <h2 class="section-title reveal">Every detail<br><em>is intentional.</em></h2>
+  <div class="identity-grid reveal">
+    <div class="identity-card">
+      <div class="identity-icon">🌿</div>
+      <h3>The Logo</h3>
+      <p>The iconic green siren — timeless, premium, instantly recognizable across cultures and languages.</p>
+    </div>
+    <div class="identity-card">
+      <div class="identity-icon">🎨</div>
+      <h3>Color Language</h3>
+      <p>Deep green and white signal calm, nature, and quality. A palette that feels both elevated and approachable.</p>
+    </div>
+    <div class="identity-card">
+      <div class="identity-icon">🗣</div>
+      <h3>Brand Voice</h3>
+      <p>Warm. Human. Unhurried. The tone invites you to stay, not just consume.</p>
+    </div>
+    <div class="identity-card">
+      <div class="identity-icon">🏠</div>
+      <h3>Third Place</h3>
+      <p>Not home, not the office — a curated comfort space that belongs to the customer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="positioning" id="positioning">
+  <p class="section-label reveal">Brand Positioning</p>
+  <h2 class="section-title reveal">Coffee is the<br><em>entry point.</em></h2>
+  <div class="pos-layout reveal">
+    <div>
+      <p class="pos-statement">"For urban consumers, Starbucks offers a premium experience that combines quality, comfort, and community."</p>
+      <div class="pos-tags">
+        <span class="tag">Premium</span>
+        <span class="tag">Aspirational</span>
+        <span class="tag">Lifestyle</span>
+        <span class="tag">Social Symbol</span>
+        <span class="tag">Experience-First</span>
+      </div>
+    </div>
+    <div class="pos-pillars">
+      <div class="pillar">
+        <span class="pillar-num">01</span>
+        <div>
+          <h4>Coffee</h4>
+          <p>High-quality, customizable beverages as the core product.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">02</span>
+        <div>
+          <h4>Ambience</h4>
+          <p>Aesthetic interiors designed to encourage lingering and belonging.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">03</span>
+        <div>
+          <h4>Personalization</h4>
+          <p>Your name, your order, your ritual — deeply personal brand touch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SWOT -->
+<section class="swot" id="analysis">
+  <p class="section-label reveal">SWOT Analysis</p>
+  <h2 class="section-title reveal">Where it<br><em>stands.</em></h2>
+  <div class="swot-grid reveal">
+    <div class="swot-cell">
+      <div class="swot-header">
+        <span class="swot-letter s-color">S</span>
+        <span class="swot-title">Strengths</span>
+      </div>
+      <ul class="swot-items">
+        <li>Strong global brand recognition</li>
+        <li>Extensive international presence</li>
+        <li>Loyal, emotionally connected customer base</li>
+        <li>Premium product quality</li>
+      </ul>
+    </div>
+    <div class="swot-cell">
+      <div class="swot-header">
+        <span class="swot-letter w-color">W</span>
+        <span class="swot-title">Weaknesses</span>
+      </div>
+      <ul class="swot-items">
+        <li>High pricing excludes broader segments</li>
+        <li>Heavy dependence on the coffee market</li>
+        <li>Overcrowding dilutes the experience</li>
+        <li>Urban-centric reach limits growth</li>
+      </ul>
+    </div>
+    <div class="swot-cell">
+      <div class="swot-header">
+        <span class="swot-letter o-color">O</span>
+        <span class="swot-title">Opportunities</span>
+      </div>
+      <ul class="swot-items">
+        <li>Expansion into emerging markets</li>
+        <li>Diversification of product offerings</li>
+        <li>Deeper sustainability initiatives</li>
+        <li>Strategic partnerships and collabs</li>
+      </ul>
+    </div>
+    <div class="swot-cell">
+      <div class="swot-header">
+        <span class="swot-letter t-color">T</span>
+        <span class="swot-title">Threats</span>
+      </div>
+      <ul class="swot-items">
+        <li>Intensifying café competition</li>
+        <li>Economic downturns affecting spend</li>
+        <li>Shifting consumer preferences</li>
+        <li>Regulatory and supply challenges</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section class="competitors">
+  <p class="section-label reveal">Competitor Analysis</p>
+  <h2 class="section-title reveal">Standing out<br><em>in the crowd.</em></h2>
+  <div class="comp-grid reveal">
+    <div class="comp-card featured">
+      <span class="comp-num">01 — Focus Brand</span>
+      <h3 class="comp-name">Starbucks</h3>
+      <span class="comp-pos">Premium Lifestyle Experience</span>
+      <ul class="comp-details">
+        <li class="comp-detail">High pricing, experience-led</li>
+        <li class="comp-detail">Ambience & personalization focus</li>
+        <li class="comp-detail">Strong emotional brand connection</li>
+        <li class="comp-detail">Urban, aspirational audience</li>
+      </ul>
+    </div>
+    <div class="comp-card">
+      <span class="comp-num">02 — Competitor</span>
+      <h3 class="comp-name">Tim Hortons</h3>
+      <span class="comp-pos">Accessible Café Experience</span>
+      <ul class="comp-details">
+        <li class="comp-detail">Mid-range pricing</li>
+        <li class="comp-detail">Comfort-focused environment</li>
+        <li class="comp-detail">Quick, casual experience</li>
+        <li class="comp-detail">Appeals to daily, mass users</li>
+      </ul>
+    </div>
+    <div class="comp-card">
+      <span class="comp-num">03 — Competitor</span>
+      <h3 class="comp-name">Costa Coffee</h3>
+      <span class="comp-pos">Premium Coffee Quality</span>
+      <ul class="comp-details">
+        <li class="comp-detail">High-quality coffee focus</li>
+        <li class="comp-detail">Sophisticated brand image</li>
+        <li class="comp-detail">Strong European café feel</li>
+        <li class="comp-detail">Targets premium coffee lovers</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CX -->
+<section class="cx">
+  <p class="section-label reveal">Customer Experience</p>
+  <h2 class="section-title reveal">They don't buy coffee.<br><em>They buy belonging.</em></h2>
+  <div class="cx-grid reveal">
+    <div class="cx-item">
+      <h3>Personalized Orders</h3>
+      <p>Your name on the cup. Your exact combination. Every visit feels made for you — because it is.</p>
+    </div>
+    <div class="cx-item">
+      <h3>Aesthetic Interiors</h3>
+      <p>Spaces designed to be lingered in. Warm lighting, comfortable seats, curated music — a world you want to stay in.</p>
+    </div>
+    <div class="cx-item">
+      <h3>Digital Loyalty</h3>
+      <p>The rewards app turns transactions into a relationship. Stars, free drinks, early access — loyalty that compounds.</p>
+    </div>
+    <div class="cx-item">
+      <h3>Consistent Quality</h3>
+      <p>Whether in Tokyo or Toronto, the experience carries the same emotional signature. That consistency is the brand.</p>
+    </div>
+    <div class="cx-quote">
+      <blockquote>"Starbucks doesn't sell coffee. It sells a feeling of being known, welcomed, and at home — wherever you are."</blockquote>
+      <cite>Kiran — Brand Audit Finding</cite>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+<section class="recommendations">
+  <p class="section-label reveal">Recommendations</p>
+  <h2 class="section-title reveal">What could<br><em>be better.</em></h2>
+  <div class="rec-list reveal">
+    <div class="rec-item">
+      <span class="rec-n">01</span>
+      <div class="rec-body">
+        <h3>Introduce Accessible Pricing Tiers</h3>
+        <p>Without compromising the premium feel, a strategic entry-level offering could capture price-sensitive segments and expand reach significantly.</p>
+      </div>
+    </div>
+    <div class="rec-item">
+      <span class="rec-n">02</span>
+      <div class="rec-body">
+        <h3>Reimagine In-Store Flow</h3>
+        <p>Overcrowding undermines the "third place" promise. Dedicated zones, better queue management, and pickup-only formats could restore intimacy.</p>
+      </div>
+    </div>
+    <div class="rec-item">
+      <span class="rec-n">03</span>
+      <div class="rec-body">
+        <h3>Deepen Digital Engagement</h3>
+        <p>The app has potential beyond transactions — personalized playlists, community features, and local café content could drive emotional loyalty further.</p>
+      </div>
+    </div>
+    <div class="rec-item">
+      <span class="rec-n">04</span>
+      <div class="rec-body">
+        <h3>Balance Premiumness with Inclusivity</h3>
+        <p>Premium and accessible aren't opposites. Starbucks can grow without diluting the brand — the key is experience consistency, not just price.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT THIS PROJECT TAUGHT ME -->
+<section class="learned" id="learned">
+  <p class="section-label reveal">Reflections</p>
+  <h2 class="section-title reveal">What this project<br><em>taught me.</em></h2>
+  <div class="learned-grid reveal">
+    <div class="learned-card">
+      <div class="learned-icon">🧩</div>
+      <h3>Brand is systemic, not symbolic</h3>
+      <p>A great brand is not a logo or a tagline — it is the coherent sum of every decision a company makes. Starbucks taught me to think holistically about how identity, operations, and consumer psychology interconnect.</p>
+    </div>
+    <div class="learned-card">
+      <div class="learned-icon">💡</div>
+      <h3>Perception creates economic reality</h3>
+      <p>The willingness to pay a premium is not rational — it is emotional. This project deepened my understanding of how perception engineering, not product quality alone, drives pricing power in modern markets.</p>
+    </div>
+    <div class="learned-card">
+      <div class="learned-icon">📊</div>
+      <h3>Frameworks are lenses, not answers</h3>
+      <p>SWOT, brand audit frameworks, and experience mapping are only as useful as the quality of thinking applied to them. The real skill is synthesis — extracting insight from data, not just organising it.</p>
+    </div>
+    <div class="learned-card">
+      <div class="learned-icon">🌐</div>
+      <h3>Global brands require local intelligence</h3>
+      <p>Starbucks' success across markets as different as Japan and the UK revealed how global brand consistency and local cultural fluency must coexist — not compete.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSION / REFLECTION -->
+<section class="conclusion" id="conclusion">
+  <p class="section-label reveal">Conclusion</p>
+  <div class="conclusion-quote reveal">
+    <blockquote>"I came in asking why people pay £6 for coffee. I left understanding how the best brands make that question irrelevant."</blockquote>
+  </div>
+  <div class="conclusion-body reveal">
+    <p>This project fundamentally shifted how I think about marketing. Before, I saw brands as communications strategy — slogans, campaigns, aesthetics. Now I understand them as integrated systems of meaning-making that operate at psychological, cultural, and economic levels simultaneously.</p>
+    <p>Studying Starbucks gave me practical frameworks for brand positioning, competitive analysis, and strategic recommendation — but more importantly, it gave me a new lens for asking better questions about how and why consumers behave as they do. That is the real output of this project.</p>
+  </div>
+  <div class="learnings reveal">
+    <span class="learning-tag">Brand = Perception</span>
+    <span class="learning-tag">Experience Drives Loyalty</span>
+    <span class="learning-tag">Consistent Touchpoints</span>
+    <span class="learning-tag">Emotional Branding</span>
+    <span class="learning-tag">Premium × Accessible</span>
+  </div>
+</section>
+
+<!-- ABOUT KIRAN -->
+<section class="about-kiran" id="about">
+  <p class="section-label reveal">About Me</p>
+  <div class="kiran-layout reveal">
+    <div class="kiran-content">
+      <h2 class="kiran-name">Kiran</h2>
+      <p class="kiran-role">BBA Student · Marketing &amp; Brand Strategy</p>
+      <p class="kiran-bio">I'm a BBA student with a deep interest in marketing, branding, consumer psychology, and the strategic frameworks that connect ideas to impact. I believe the best brands don't just sell products — they create meaning. I'm looking for opportunities to apply that thinking in a real-world marketing or brand strategy environment.</p>
+      <div class="kiran-links">
+        <a href="https://linkedin.com" class="kiran-btn" target="_blank">LinkedIn ↗</a>
+        <a href="mailto:kiranbhagoria@gmail.com" class="kiran-btn-outline">kiranbhagoria@gmail.com</a>
+      </div>
+      <p class="kiran-cta">Let's build <em>meaningful</em> brands.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Kiran</div>
+  <div class="footer-contact">
+    BBA Student · Marketing &amp; Brand Strategy · <a href="mailto:kiranbhagoria@gmail.com">kiranbhagoria@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
